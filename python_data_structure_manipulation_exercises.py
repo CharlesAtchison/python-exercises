@@ -120,14 +120,17 @@ students = [
 # How many students are there? -- 14
 number_of_students = len(students)
 
-# How many students prefer light coffee? For each type of coffee roast? -- 3 
+# How many students prefer light coffee? For each type of coffee roast? -- 3 / [(5, 'dark'), (6, 'medium'), (3, 'light')]
 light_coffee = len([stud for stud in students if stud['coffee_preference'] == 'light'])
 
-# How many types of each pet are there? -- 3
-numb_types_of_pets = len(set(val[1] for each_student in students
- for each_pet in each_student['pets'] 
- for val in each_pet.items() 
- if val[0] == 'species'))
+each_type_of_roast = [([each_student['coffee_preference'] 
+for each_student in students].count(chr),chr)
+ for chr in set([each_student['coffee_preference'] 
+ for each_student in students])]
+
+# How many types of each pet are there? -- [(4, 'horse'), (3, 'dog'), (11, 'cat')]
+numb_types_of_pets = [([each_pet['species'] for each_student in students for each_pet in each_student['pets']].count(chr),chr)
+ for chr in set([each_pet['species'] for each_student in students for each_pet in each_student['pets']])]
 
 # How many grades does each student have? Do they all have the same number of grades? -- 4 and yes
 number_of_grades = [len(each_student['grades']) for each_student in students]
