@@ -124,7 +124,10 @@ number_of_students = len(students)
 light_coffee = len([stud for stud in students if stud['coffee_preference'] == 'light'])
 
 # How many types of each pet are there? -- 3
-numb_types_of_pets = len(set(val[1] for each_student in students for each_pet in each_student['pets'] for val in each_pet.items() if val[0] == 'species'))
+numb_types_of_pets = len(set(val[1] for each_student in students
+ for each_pet in each_student['pets'] 
+ for val in each_pet.items() 
+ if val[0] == 'species'))
 
 # How many grades does each student have? Do they all have the same number of grades? -- 4 and yes
 number_of_grades = [len(each_student['grades']) for each_student in students]
@@ -139,41 +142,87 @@ numb_of_pets = [len(each_student['pets']) for each_student in students]
 numb_in_web_dev = len([each_student for each_student in students if each_student['course'] == 'web development'])
 
 # What is the average number of pets for students in web development?
-avg_num_of_pets = sum([len(each_student['pets']) for each_student in students if each_student['course'] == 'web development'])/len([len(each_student['pets']) for each_student in students if each_student['course'] == 'web development'])
+avg_num_of_pets = sum([len(each_student['pets']) 
+for each_student in students if each_student['course'] == 'web development'])/len(
+    [len(each_student['pets']) for each_student in students
+ if each_student['course'] == 'web development'])
 
 # What is the average pet age for students in data science? - 7 years (if they have a pet)
-avg_pet_age = sum([each_pet['age'] for each_student in students for each_pet in each_student['pets'] if each_student['course'] =='data science' and each_pet['age'] != 0])/ len([each_pet['age'] for each_student in students for each_pet in each_student['pets'] if each_student['course'] =='data science' and each_pet['age'] != 0])
+avg_pet_age = sum([each_pet['age']
+ for each_student in students 
+ for each_pet in each_student['pets'] 
+ if each_student['course'] =='data science' and each_pet['age'] != 0])/len(
+     [each_pet['age'] for each_student in students 
+     for each_pet in each_student['pets'] 
+     if each_student['course'] =='data science' and each_pet['age'] != 0])
 
 # What is most frequent coffee preference for data science students? -- Medium
-data_science_coff_preff = max([([each_student['coffee_preference'] for each_student in students if each_student['course'] == 'data science'].count(chr),chr) for chr in set([each_student['coffee_preference'] for each_student in students if each_student['course'] == 'data science'])])[1]
+data_science_coff_preff = max([([each_student['coffee_preference'] 
+for each_student in students if each_student['course'] == 'data science'].count(chr),chr)
+ for chr in set([each_student['coffee_preference'] 
+ for each_student in students if each_student['course'] == 'data science'])])[1]
 
 # What is the least frequent coffee preference for web development students? -- Dark
-web_dev_coff_pref = min([([each_student['coffee_preference'] for each_student in students if each_student['course'] == 'web development'].count(chr),chr) for chr in set([each_student['coffee_preference'] for each_student in students if each_student['course'] == 'web development'])])[1]
+web_dev_coff_pref = min([([each_student['coffee_preference'] 
+for each_student in students if each_student['course'] == 'web development'].count(chr),chr)
+ for chr in set([each_student['coffee_preference'] 
+ for each_student in students if each_student['course'] == 'web development'])])[1]
 
 # What is the average grade for students with at least 2 pets? -- 83.8
-avg_grade_2_pets = sum([sum(each_student['grades']) / len(each_student['grades']) for each_student in students if len(each_student['pets']) >= 2])/len([sum(each_student['grades']) / len(each_student['grades']) for each_student in students if len(each_student['pets']) >= 2])
+avg_grade_2_pets = sum([sum(each_student['grades'])/len(each_student['grades'])
+ for each_student in students if len(each_student['pets']) >= 2])/len(
+     [sum(each_student['grades']) / len(each_student['grades']) 
+     for each_student in students if len(each_student['pets']) >= 2])
 
 # How many students have 3 pets? -- 1
-num_of_students_with_3_pets = len([each_student for each_student in students if len(each_student['pets']) == 3])
+num_of_students_with_3_pets = len([each_student 
+for each_student in students 
+if len(each_student['pets']) == 3])
 
 # What is the average grade for students with 0 pets?  -- 82.125
-avg_grade_0_pets = sum([sum(each_student['grades']) / len(each_student['grades']) for each_student in students if len(each_student['pets']) == 0])/len([sum(each_student['grades']) / len(each_student['grades']) for each_student in students if len(each_student['pets'])  == 0])
+avg_grade_0_pets = sum([sum(each_student['grades'])/len(
+    each_student['grades']) for each_student in students 
+    if len(each_student['pets']) == 0])/len([sum(each_student['grades'])/len(
+        each_student['grades']) for each_student in students if len(each_student['pets'])  == 0])
 
 # What is the average grade for web development students? data science students? 81.18 / 84.68
-avg_grade_web_dev = sum([sum(each_student['grades']) / len(each_student['grades']) for each_student in students if each_student['course'] == 'web development'])/len([sum(each_student['grades']) / len(each_student['grades']) for each_student in students if each_student['course'] == 'web development'])
-avg_grade_data_science= sum([sum(each_student['grades']) / len(each_student['grades']) for each_student in students if each_student['course'] == 'data science'])/len([sum(each_student['grades']) / len(each_student['grades']) for each_student in students if each_student['course'] == 'data science'])
+avg_grade_web_dev = sum([sum(each_student['grades'])/len(
+    each_student['grades']) for each_student in students 
+    if each_student['course'] == 'web development'])/len([sum(each_student['grades'])/len(
+        each_student['grades']) for each_student in students 
+        if each_student['course'] == 'web development'])
+avg_grade_data_science= sum([sum(each_student['grades'])/len(
+    each_student['grades']) for each_student in students 
+    if each_student['course'] == 'data science'])/len(
+        [sum(each_student['grades'])/len(
+            each_student['grades']) for each_student in students
+             if each_student['course'] == 'data science'])
 
 # What is the average grade range (i.e. highest grade - lowest grade) for dark coffee drinkers? [99, 65]
-grade_range = [max([grade for grades in [each_student['grades'] for each_student in students if each_student['coffee_preference'] == 'dark'] for grade in grades]), min([grade for grades in [each_student['grades'] for each_student in students if each_student['coffee_preference'] == 'dark'] for grade in grades])]
+grade_range = [max([grade for grades in [each_student['grades'] 
+for each_student in students if each_student['coffee_preference'] == 'dark'] 
+for grade in grades]), min([grade for grades in [each_student['grades'] 
+for each_student in students if each_student['coffee_preference'] == 'dark'] 
+for grade in grades])]
 
 # What is the average number of pets for medium coffee drinkers? - 1.4 excluding the students with 0 pets
-avg_num_of_pets_medium_coffee = sum([len(each_student['pets']) for each_student in students if each_student['coffee_preference'] == 'medium' and len(each_student['pets']) != 0])/ len([len(each_student['pets']) for each_student in students if each_student['coffee_preference'] == 'medium' and len(each_student['pets']) != 0])
+avg_num_of_pets_medium_coffee = sum([len(each_student['pets']) 
+for each_student in students if each_student['coffee_preference'] == 'medium' and len(
+    each_student['pets']) != 0])/ len([len(each_student['pets']) 
+    for each_student in students if each_student['coffee_preference'] == 'medium' and len(
+        each_student['pets']) != 0])
 
 # What is the most common type of pet for web development students? -- horse
-common_pet_type = max([([each_pet['species'] for each_student in students for each_pet in each_student['pets'] if each_student['course'] == 'web development'].count(chr),chr) for chr in set([each_pet['species'] for each_student in students for each_pet in each_student['pets'] if each_student['course'] == 'web development'])])[1]
+common_pet_type = max([([each_pet['species'] for each_student in students 
+for each_pet in each_student['pets'] if each_student['course'] == 'web development'].count(chr),chr)
+ for chr in set([each_pet['species'] for each_student in students 
+ for each_pet in each_student['pets'] if each_student['course'] == 'web development'])])[1]
 
 # What is the average name length? -- 13.642857142857142
-name_list =  sum([len(each_student['student']) for each_student in students])/len([len(each_student['student']) for each_student in students])
+name_list =  sum([len(each_student['student']) for each_student in students])/len(
+    [len(each_student['student']) for each_student in students])
 
 # What is the highest pet age for light coffee drinkers? - 8
-highest_pet_age = max([each_pet['age'] for each_student in students for each_pet in each_student['pets'] if each_student['coffee_preference'] == 'light'])
+highest_pet_age = max([each_pet['age'] for each_student in students 
+for each_pet in each_student['pets'] 
+if each_student['coffee_preference'] == 'light'])
