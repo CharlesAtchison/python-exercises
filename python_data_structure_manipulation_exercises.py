@@ -165,11 +165,14 @@ for each_student in students if each_student['course'] == 'data science'].count(
  for chr in set([each_student['coffee_preference'] 
  for each_student in students if each_student['course'] == 'data science'])])[1]
 
-# What is the least frequent coffee preference for web development students? -- Dark
-web_dev_coff_pref = min([([each_student['coffee_preference'] 
+# What is the least frequent coffee preference for web development students? -- ['medium', 'dark']
+least_frequet_coffee_pref = [each_count[1] for each_count in [([each_student['coffee_preference'] 
 for each_student in students if each_student['course'] == 'web development'].count(chr),chr)
  for chr in set([each_student['coffee_preference'] 
- for each_student in students if each_student['course'] == 'web development'])])[1]
+ for each_student in students if each_student['course'] == 'web development'])] if each_count[0] == min([([each_student['coffee_preference'] 
+for each_student in students if each_student['course'] == 'web development'].count(chr),chr)
+ for chr in set([each_student['coffee_preference'] 
+ for each_student in students if each_student['course'] == 'web development'])])[0]]
 
 # What is the average grade for students with at least 2 pets? -- 83.8
 avg_grade_2_pets = sum([sum(each_student['grades'])/len(each_student['grades'])
