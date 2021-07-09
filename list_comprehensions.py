@@ -84,3 +84,4 @@ def is_prime(num):
     return True
 
 primes = [num for num in numbers if is_prime(num) == True]
+
