@@ -118,22 +118,25 @@ def normalize_name(some_str):
 
     # Iterates through each char in the string
     for each_char in some_str:
-        # If the new_string is still None, it will check only for a number or an alpha numeric
+        # If the new_string is still None, it will check only for a alpha character
         # value so that the leading whitespace is removed and then adds the first char to the
         # new string
+        # print(new_string, each_char)
         if not new_string:
-            if each_char.isnumeric() or each_char.isalnum():
+            if each_char.isalpha():
                 new_string = each_char
         
         # If the new_string has a value, it will check if each char is an alpha numeric 
         # value, a number, or is a space, everything else will not be added to the new str
-        elif each_char.isnumeric() or each_char.isalnum() or each_char.isspace():
+        elif each_char.isalnum() or each_char.isspace():
             new_string += each_char
     
     # The cleaned string new is put all to lowercase, the strip() method removes all trailing
     # whitespace that may exist and the replace() method replaces all spaces with underscores
     return new_string.lower().strip().replace(' ', '_')
-    
+
+test_case = normalize_name("1 2 3 $()&^$( T#%^H#%^i%^s%^ i%^&S %&(*(a v$%&AlI#%^d p#%^YTh#%^on id#%^%&en$%&TI#$^%%$&^*Fi@$%^*(er  #^#^#@")
+print(test_case.isidentifier())
 # 11)
 def cumulative_sum(lst_of_nums):
     '''
@@ -186,7 +189,7 @@ def col_index(sprdsht_col_name):
     col_index('B') returns 2
     col_index('AA') returns 27
     '''
-    
+
     # lowers the spreadsheet col name to compare to lowercase chars
     sprdsht_col_name = sprdsht_col_name.lower()
     
@@ -199,7 +202,7 @@ def col_index(sprdsht_col_name):
         # Iterates through the alphabet useing enumerate to keep count of what letter value (starting at 1)
         for n, each_char in enumerate([each_letter for each_letter in 'abcdefghijklmnopqrstuvwxyz'], 1):
             # If the character is the same as that specific col name, it adds that count STRING to 
-            # the coun and then stops the iteration and begins on the next col
+            # the count and then stops the iteration and begins on the next col
             if each_char == sprdsht_col_name[each_col]:
                 count += str(n)
                 break
