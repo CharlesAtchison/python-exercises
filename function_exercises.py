@@ -135,8 +135,6 @@ def normalize_name(some_str):
     # whitespace that may exist and the replace() method replaces all spaces with underscores
     return new_string.lower().strip().replace(' ', '_')
 
-test_case = normalize_name("1 2 3 $()&^$( T#%^H#%^i%^s%^ i%^&S %&(*(a v$%&AlI#%^d p#%^YTh#%^on id#%^%&en$%&TI#$^%%$&^*Fi@$%^*(er  #^#^#@")
-print(test_case.isidentifier())
 # 11)
 def cumulative_sum(lst_of_nums):
     '''
@@ -192,42 +190,14 @@ def col_index(sprdsht_col_name):
 
     # lowers the spreadsheet col name to compare to lowercase chars
     sprdsht_col_name = sprdsht_col_name.lower()
-    
-    # The count will have string numbers to hold raw letter values in each position
-    count = ''
 
-    # Iterates through each column within the col_name numerically
-    # Such as there would be 3 columns for the col_index name ('AAA')
-    for each_col in range(len(sprdsht_col_name)):
-        # Iterates through the alphabet useing enumerate to keep count of what letter value (starting at 1)
-        for n, each_char in enumerate([each_letter for each_letter in 'abcdefghijklmnopqrstuvwxyz'], 1):
-            # If the character is the same as that specific col name, it adds that count STRING to 
-            # the count and then stops the iteration and begins on the next col
-            if each_char == sprdsht_col_name[each_col]:
-                count += str(n)
-                break
-    
-    # This sets the mathematical total to 0
-    total = 0
-    # Since the matematical extrapolation requires more than 1 digit, just return same val
-    # for any col_index of len 1
-    if len(count) == 1:
-        return (int(count))
-    # If there is a col length greater than 1, iterate through each count place holder (str)
-    else:
-        # enumerate through each value to get the index (base 1) and placeholder value (str)
-        for n, each_val in enumerate(count, 1):
-            # Checks if the last value is up by comparing length of orig string to what index
-            # is currently being checked.
-            if n == len(count):
-                # Adds raw value, after converted to an int to the total int
-                total += int(each_val)
-            else:
-                # If it is not the final value, multiply the value by 26 to count the iterations required
-                # Example: 
-                # the Col_index of 'BB' would have the count of '22' as string and would require 2 
-                # iterations through the alphabet to get the first 'B' which would be 26 * 2 = 52
-                # then it would require 2 more tests 'A then B' to get to 'B' being 2.
-                # Therefore, 52+2 = 54.
-                total += int(each_val) * 26
-    return total
+    result = 0
+
+    # Iterates through the spreadsheet columns and calculates the product
+    # of the current result (default of 0 for 1 letter columns) and then adds
+    # delta count difference between 'a' and whatever the column letter is such
+    # as a - b would be 2 letters (since it's inclusive)
+    for i, col_let in enumerate(sprdsht_col_name):
+        result *= 26
+        result += ord(col_let) - ord('a') + 1
+    return result
