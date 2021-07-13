@@ -128,19 +128,10 @@ for each_student in students].count(chr),chr)
  for chr in set([each_student['coffee_preference'] 
  for each_student in students])]
 
-# How many types of each pet are there? -- [(4, 'horse'), (3, 'dog'), (11, 'cat')]
+# How many types of each pet are there? -- [(4, 'horse'), (3, 'dog'), (11, 'cat')]         
 numb_types_of_pets = [([each_pet['species'] for each_student in students for each_pet in each_student['pets']].count(chr),chr)
- for chr in set([each_pet['species'] for each_student in students for each_pet in each_student['pets']])]
+ for chr in set([each_pet['species'] for each_student in students for each_pet in each_student['pets']])]        
 
-pet_types = dict()
-
-for each_student in students:
-    for each_pet in each_student['pets']:
-        if each_pet['species'] in pet_types.keys():
-            pet_types[each_pet['species']] += 1
-        else:
-            pet_types[each_pet['species']] = 1
-print(pet_types)
 
 # How many grades does each student have? Do they all have the same number of grades? -- 4 and yes
 number_of_grades = [len(each_student['grades']) for each_student in students]
@@ -235,6 +226,7 @@ for each_pet in each_student['pets'] if each_student['course'] == 'web developme
 # What is the average name length? -- 13.642857142857142
 name_list =  sum([len(each_student['student']) for each_student in students])/len(
     [len(each_student['student']) for each_student in students])
+
 
 # What is the highest pet age for light coffee drinkers? - 8
 highest_pet_age = max([each_pet['age'] for each_student in students 

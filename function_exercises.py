@@ -186,6 +186,7 @@ def col_index(sprdsht_col_name):
     col_index('B') returns 2
     col_index('AA') returns 27
     '''
+    
     # lowers the spreadsheet col name to compare to lowercase chars
     sprdsht_col_name = sprdsht_col_name.lower()
     
@@ -227,4 +228,3 @@ def col_index(sprdsht_col_name):
                 # Therefore, 52+2 = 54.
                 total += int(each_val) * 26
     return total
-

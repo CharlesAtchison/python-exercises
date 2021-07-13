@@ -62,7 +62,7 @@ multiplicand = int(input('Enter a number: \n'))
 
 for n in range(10):
     print(f'{multiplicand} x {n+1} = {multiplicand * (n+1)}')
-7
+
 for n in range(9):
     output = ''
     for i in range(n+1):
